@@ -11,6 +11,7 @@ public class Payroll_Service_JDBC{
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
+            //create connection for sql database
             Connection con = DriverManager.getConnection(url, user, password);
             if (con != null) {
                 System.out.println("Database connected successfully!");
