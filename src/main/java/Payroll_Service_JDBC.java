@@ -26,9 +26,9 @@ public class Payroll_Service_JDBC{
 
                 int rowsAffected = stmt.executeUpdate(updateQuery);
                 if (rowsAffected > 0) {
-                    System.out.println("Salary updated successfully for Swapnil.");
+                    System.out.println("Salary updated successfully for Anjali.");
                 } else {
-                    System.out.println("No records updated. Please check the name 'Swapnil' in the database.");
+                    System.out.println("No records updated. Please check the name 'Anjali' in the database.");
                 }
 
                 ResultSet rs = stmt.executeQuery(selectQuery);
