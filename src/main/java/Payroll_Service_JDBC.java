@@ -1,17 +1,15 @@
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Payroll_Service_JDBC{
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/payroll_service";
         String user = "root";
-        String password = "****";
+        String password = "Ap1227@#";
+        String query="select * from employee_payroll;";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            //create connection for sql database
             Connection con = DriverManager.getConnection(url, user, password);
             if (con != null) {
                 System.out.println("Database connected successfully!");
@@ -23,7 +21,25 @@ public class Payroll_Service_JDBC{
                     java.sql.Driver d = driverList.nextElement();
                     System.out.println("Registered JDBC Driver: " + d.getClass().getName());
                 }
-
+                Statement stmt =con.createStatement();
+                ResultSet rs= stmt.executeQuery(query);
+                while (rs.next()){
+                    int emp_id = rs.getInt("employee_id");
+                    String name = rs.getString("name");
+                    String gender = rs.getString("gender");
+                    Double salary = rs.getDouble("salary");
+                    String start_date = rs.getString("start_date");
+                    String ph_number = rs.getString("phone_no");
+                    String address = rs.getString("Address");
+                    String department = rs.getString("Department");
+                    int Basic_pay = rs.getInt("Basic_pay");
+                    int Deductions = rs.getInt("Deductions");
+                    int Taxable_pay = rs.getInt("Taxable_pay");
+                    int Income_tax = rs.getInt("Income_tax");
+                    int Net_pay = rs.getInt("Net_pay");
+                    System.out.println(emp_id+" "+name+" "+" "+gender+" "+salary+" "+start_date+" "+ph_number+" "+address+" "+department+" "+Basic_pay+" "+Deductions+" "+Taxable_pay+" "+Income_tax+" "+Net_pay);
+                    System.out.println();
+                }
                 con.close();
             } else {
                 System.out.println("Failed to make connection!");
@@ -32,5 +48,6 @@ public class Payroll_Service_JDBC{
             System.out.println("Database connection failed!");
             e.printStackTrace();
         }
+
     }
 }
