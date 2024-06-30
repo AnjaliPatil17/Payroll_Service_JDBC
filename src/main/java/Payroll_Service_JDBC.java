@@ -7,7 +7,7 @@ public class Payroll_Service_JDBC{
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/payroll_service";
         String user = "root";
-        String password = "Ap1227@#";
+        String password = "****";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
