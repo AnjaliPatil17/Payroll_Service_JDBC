@@ -6,8 +6,7 @@ public class Payroll_Service_JDBC{
         String url = "jdbc:mysql://localhost:3306/payroll_service";
         String user = "root";
         String password = "****";
-        String updateQuery = "UPDATE employee_payroll SET Salary=? WHERE name=?";
-        String selectQuery = "SELECT * FROM employee_payroll";
+        String selectQuery = "SELECT * FROM employee_payroll WHERE start_date BETWEEN CAST('2024-01-03' AS DATE) AND DATE (NOW()) ";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -22,11 +21,7 @@ public class Payroll_Service_JDBC{
                     java.sql.Driver d = driverList.nextElement();
                     System.out.println("Registered JDBC Driver: " + d.getClass().getName());
                 }
-                PreparedStatement stmt =con.prepareStatement(updateQuery);
-                stmt.setInt(1,300000);
-                stmt.setString(2,"Anjali");
-                stmt.executeUpdate();
-                System.out.println("Updated");
+                Statement stmt = con.createStatement();
 
                 ResultSet rs = stmt.executeQuery(selectQuery);
                 while (rs.next()) {
